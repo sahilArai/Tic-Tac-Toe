@@ -7,24 +7,39 @@ let newGameBtn = document.querySelector(".newGameBtn");
 let winnerName = "";
 let winnerMsg = document.querySelector(".winnerMsg");
 let popSound = new Audio("pop.mp3");
+let mouseClick = new Audio("mouseClick.mp3");
+let winningSound = new Audio("winningSound.mp3");
+let drawGame = new Audio("drawGame.mp3");
+let line = document.querySelector(".line");
+let Xscore = document.querySelector(".XscoreNumber");
+let Oscore = document.querySelector(".OscoreNumber");
+let scoreSection = document.querySelector(".scoreSection")
+let ResetBtn = document.querySelector(".resetBtn")
+Xscore.innerText = "0";
+Oscore.innerText = "0";
 
 let winPattern = [
-  [0, 1, 2],
-  [0, 3, 6],
-  [0, 4, 8],
-  [1, 4, 7],
-  [2, 1, 7],
-  [2, 1, 0],
-  [2, 5, 8],
-  [2, 4, 6],
-  [3, 4, 5],
-  [6, 7, 8],
+  [0, 1, 2, 1.5, 2500, 0],
+  [0, 3, 6, -33, 7500, 90],
+  [0, 4, 8, 4, 7500, 45],
+  [1, 4, 7, 1.5, 7500, 90],
+  [2, 5, 8, 38, 7500, 90],
+  [2, 4, 6, 1, 7500, 135],
+  [3, 4, 5, 1.5, 7500, 0],
+  [6, 7, 8, 1.5, 12100, 0],
 ];
+
+ResetBtn.addEventListener("click",() =>{
+  alert("are you shure??")
+})
 
 // Reset game after winning or draw game
 newGameBtn.addEventListener("click", () => {
+  mouseClick.play();
   game.style.display = "block";
   msgContainer.style.display = "none";
+  line.classList.remove("visible");
+  scoreSection.style.opacity = "1";
   x = true;
 
   boxes.forEach((box) => {
@@ -44,12 +59,19 @@ let checkWinner = () => {
 
     if (position1 !== "" && position2 !== "" && position3 !== "") {
       if (position1 === position2 && position2 === position3) {
-        game.style.display = "none";
-        msgContainer.style.display = "block";
-        msgContainer.style.display = "flex";
-        msgContainer.style.justifyContent = "center";
-        msgContainer.style.alignItems = "center";
+        setTimeout(() => {
+          game.style.display = "none";
+          msgContainer.style.display = "block";
+          msgContainer.style.display = "flex";
+          msgContainer.style.justifyContent = "center";
+          msgContainer.style.alignItems = "center";
+          scoreSection.style.opacity = "0";
+          scoreSection.style.textAlign = "top";
+        }, 3000);
         winnerName = `${position1}`;
+        winningSound.play();
+        line.classList.add("visible"); 
+        line.style.transform = `translate(${pattern[3]}%, ${pattern[4]}%) rotate(${pattern[5]}deg)`;
 
         if (position1 === "X") {
           winner.style.color = "color: tomato";
@@ -60,6 +82,7 @@ let checkWinner = () => {
                             0 0 80px rgb(139, 0, 0)`;
 
           winner.innerHTML = `${position1} `;
+          Xscore.innerText = parseInt(Xscore.innerText) + 1;
         } else {
           winner.style.color = "rgb(71, 151, 255)";
           winner.style.textShadow = `
@@ -69,13 +92,14 @@ let checkWinner = () => {
                             0 0 80px rgb(0, 2, 139)`;
 
           winner.innerHTML = `${position1} `;
-          break;
+          Oscore.innerText = parseInt(Oscore.innerText) + 1;
+          draw = false;
+          break; 
         }
-        draw = false;
       }
     }
   }
-  //if game is drwa
+  // Check for a draw after checking all patterns
   if (draw) {
     let allBoxesFilled = Array.from(boxes).every((box) => box.innerHTML !== "");
     if (allBoxesFilled && winnerName === "") {
@@ -84,7 +108,9 @@ let checkWinner = () => {
       msgContainer.style.display = "flex";
       msgContainer.style.justifyContent = "center";
       msgContainer.style.alignItems = "center";
-      winner.innerHTML = "No one ";
+      winnerMsg.innerText = "It's a draw!";
+      winnerMsg.classList.add("draw");
+      drawGame.play();
     }
   }
 };
@@ -92,8 +118,8 @@ let checkWinner = () => {
 //if 'X' or 'O' should display after click
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
+    popSound.play();
     if (x === true) {
-      popSound.play();
       box.innerHTML = "X";
       box.style.color = "tomato";
       box.style.textShadow = `
@@ -104,7 +130,6 @@ boxes.forEach((box) => {
           `;
       x = false;
     } else {
-      popSound.play();
       box.innerHTML = "O";
       box.style.color = "rgb(71, 151, 255)";
       box.style.textShadow = `

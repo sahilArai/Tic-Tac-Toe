@@ -8,6 +8,8 @@
   </head>
   <body>
     <div class="container">
+
+      <!-- Message of winner  -->
       <div class="msgContainer">
         <h1 class="winnerMsg"><span class="winner"> </span>Is Winner.</h1>
         <button class="newGameBtn" type="button">
@@ -15,7 +17,18 @@
         </button>
       </div>
 
+      <!-- score section  -->
+      <div class="scoreSection">
+        <h1>Score</h1>
+        <div class="XAndO">
+          <h3 class="XScore">X - <span class="XscoreNumber"></span></h3>
+          <h3 class="OScore">O - <span class="OscoreNumber"></span></h3>
+        </div>       
+      </div>
+
+      <!-- Game board  -->
       <div class="game">
+        <div class="line"></div>
         <div class="firstRow">
           <button class="box col1"></button>
           <button class="box col2"></button>
@@ -34,6 +47,13 @@
           <button class="box"></button>
         </div>
       </div>
+
+      <!-- Reset button  -->
+      <button type="button" class="resetBtn">
+        Reset Game
+      </button>
+
+
     </div>
 
     <script src="script.js"></script>
