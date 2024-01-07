@@ -6,6 +6,7 @@ let winner = document.querySelector(".winner");
 let newGameBtn = document.querySelector(".newGameBtn");
 let winnerName = "";
 let winnerMsg = document.querySelector(".winnerMsg");
+let popSound = new Audio("pop.mp3");
 
 let winPattern = [
   [0, 1, 2],
@@ -92,6 +93,7 @@ let checkWinner = () => {
 boxes.forEach((box) => {
   box.addEventListener("click", () => {
     if (x === true) {
+      popSound.play();
       box.innerHTML = "X";
       box.style.color = "tomato";
       box.style.textShadow = `
@@ -102,6 +104,7 @@ boxes.forEach((box) => {
           `;
       x = false;
     } else {
+      popSound.play();
       box.innerHTML = "O";
       box.style.color = "rgb(71, 151, 255)";
       box.style.textShadow = `
