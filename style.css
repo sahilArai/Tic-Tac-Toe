@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: cursive;
+}
+.container {
+  height: 100vh;
+  width: 100vw;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.msgContainer {
+  position: absolute;
+  height: 50vh;
+  width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  display: none;
+}
+h1 {
+  font-size: 7vmin;
+  color: white;
+}
+.newGameBtn {
+  position: relative;
+  cursor: pointer;
+  padding: 1%;
+  border: 1px solid rgb(3, 255, 57);
+  border-radius: 15px;
+  background: none;
+  perspective: 2em;
+  font-size: 1vmax;
+  letter-spacing: 2px;
+  margin-top: 3%;
+  color: rgb(3, 255, 57);
+  box-shadow: inset 0px 0px 0.5em 0px green, 0px 0px 0.5em 0px green;
+  box-shadow: inset 0px 0px 0.5em 0px green, 0px 0px 0.5em 0px green;
+  box-shadow: inset 0px 0px 0.5em 0px green, 0px 0px 0.5em 0px green;
+  animation: border-flicker 2s linear infinite;
+}
+.btnText {
+  text-shadow: 0 0 10px green, 0 0 20px rgb(0, 128, 100), 0 0 4px green,
+    0 0 80px green;
+  padding: 10px;
+  animation: text-flicker 3s linear infinite;
+}
+.newGameBtn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.7;
+  filter: blur(1em);
+  transform: translatey(120%) rotateX(95deg) scale(1, 0.35);
+  background: green;
+  pointer-events: none;
+}
+.newGameBtn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: -1;
+  background-color: green;
+  box-shadow: 0 0 2em 0.2em green;
+  transition: opacity 100ms linear;
+  border-radius: 15px;
+}
+
+.newGameBtn:hover .btnTxt {
+  animation: none;
+}
+
+.newGameBtn:hover {
+  color: black;
+  animation: none;
+  text-shadow: none;
+  opacity: 1;
+}
+
+.newGameBtn:hover:before {
+  filter: blur(1.5em);
+  opacity: 1;
+}
+
+.newGameBtn:hover:after {
+  opacity: 1;
+}
+
+.game {
+  height: 49vmin;
+  width: 48vmin;
+  background-color: transparent;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.firstRow,
+.secondRow,
+.thirdRow {
+  height: 16.5vmin;
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+}
+.box {
+  height: 16.5vmin;
+  width: 16vmin;
+  background-color: transparent;
+  border: none;
+  font-size: 6vmin;
+  text-align: center;
+  color: tomato;
+  text-shadow: 0 0 10px orangered, 0 0 20px firebrick, 0 0 40px maroon,
+    0 0 80px darkred;
+  cursor: pointer;
+}
+.box:hover {
+  background-color: rgba(1, 250, 42, 0.116);
+  border-radius: 10px;
+}
+.firstRow,
+.secondRow {
+  border-bottom: 1px solid white;
+}
+.col1,
+.col2 {
+  border-right: 1px solid white;
+}
