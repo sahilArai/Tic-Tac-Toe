@@ -13,8 +13,11 @@ let drawGame = new Audio("drawGame.mp3");
 let line = document.querySelector(".line");
 let Xscore = document.querySelector(".XscoreNumber");
 let Oscore = document.querySelector(".OscoreNumber");
-let scoreSection = document.querySelector(".scoreSection")
-let ResetBtn = document.querySelector(".resetBtn")
+let scoreSection = document.querySelector(".scoreSection");
+let ResetBtn = document.querySelector(".resetBtn");
+let alertContainer = document.querySelector(".alertContainer");
+let yes = document.querySelector("#yes");
+let no = document.querySelector("#no");
 Xscore.innerText = "0";
 Oscore.innerText = "0";
 
@@ -29,15 +32,35 @@ let winPattern = [
   [6, 7, 8, 1.5, 12100, 0],
 ];
 
-ResetBtn.addEventListener("click",() =>{
-  alert("are you shure??")
-})
+// restart game
+yes.addEventListener("click", () => {
+  mouseClick.play();
+  Xscore.innerText = "0";
+  Oscore.innerText = "0";
+  x = true;
+  alertContainer.style.display = "none";
+  boxes.forEach((box) => {
+    box.innerHTML = "";
+    box.disabled = false;
+  });
+});
+no.addEventListener("click", () => {
+  mouseClick.play();
+  alertContainer.style.display = "none";
+});
+
+//If restart button clicked
+ResetBtn.addEventListener("click", () => {
+  mouseClick.play();
+  alertContainer.style.display = "block";
+});
 
 // Reset game after winning or draw game
 newGameBtn.addEventListener("click", () => {
   mouseClick.play();
   game.style.display = "block";
   msgContainer.style.display = "none";
+  ResetBtn.style.display = "block";
   line.classList.remove("visible");
   scoreSection.style.opacity = "1";
   x = true;
@@ -61,6 +84,7 @@ let checkWinner = () => {
       if (position1 === position2 && position2 === position3) {
         setTimeout(() => {
           game.style.display = "none";
+          ResetBtn.style.display = "none";
           msgContainer.style.display = "block";
           msgContainer.style.display = "flex";
           msgContainer.style.justifyContent = "center";
@@ -70,7 +94,7 @@ let checkWinner = () => {
         }, 3000);
         winnerName = `${position1}`;
         winningSound.play();
-        line.classList.add("visible"); 
+        line.classList.add("visible");
         line.style.transform = `translate(${pattern[3]}%, ${pattern[4]}%) rotate(${pattern[5]}deg)`;
 
         if (position1 === "X") {
@@ -94,7 +118,7 @@ let checkWinner = () => {
           winner.innerHTML = `${position1} `;
           Oscore.innerText = parseInt(Oscore.innerText) + 1;
           draw = false;
-          break; 
+          break;
         }
       }
     }
@@ -104,6 +128,8 @@ let checkWinner = () => {
     let allBoxesFilled = Array.from(boxes).every((box) => box.innerHTML !== "");
     if (allBoxesFilled && winnerName === "") {
       game.style.display = "none";
+      ResetBtn.style.display = "none";
+      scoreSection.style.opacity = "0";
       msgContainer.style.display = "block";
       msgContainer.style.display = "flex";
       msgContainer.style.justifyContent = "center";

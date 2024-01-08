@@ -79,11 +79,9 @@ h1 {
   transition: opacity 100ms linear;
   border-radius: 15px;
 }
-
 .newGameBtn:hover .btnTxt {
   animation: none;
 }
-
 .newGameBtn:hover {
   color: black;
   animation: none;
@@ -92,16 +90,14 @@ h1 {
   transform: scale(1.5); /* Increase the scale factor as needed */
   transition: transform 0.3s ease-in-out;
 }
-
 .newGameBtn:hover:before {
   filter: blur(1.5em);
   opacity: 1;
 }
-
 .newGameBtn:hover:after {
   opacity: 1;
 }
-.scoreSection{
+.scoreSection {
   height: 20vmin;
   width: 20vmax;
   background-color: transparent;
@@ -111,24 +107,21 @@ h1 {
   justify-content: center;
   align-items: center;
 }
-.XAndO{
+.XAndO {
   width: 100%;
   display: flex;
   justify-content: space-around;
   font-size: 2vmax;
 }
-.XScore{
+.XScore {
   color: tomato;
   text-shadow: 0 0 10px orangered, 0 0 20px firebrick, 0 0 40px maroon,
-  0 0 80px darkred;
+    0 0 80px darkred;
 }
-.OScore{
-  color:rgb(71, 151, 255);
-  text-Shadow:
-    0 0 10px rgb(0, 17, 255), 
-    0 0 20px rgb(34, 56, 178), 
-    0 0 40px rgb(14, 2, 128), 
-    0 0 80px rgb(0, 2, 139);
+.OScore {
+  color: rgb(71, 151, 255);
+  text-shadow: 0 0 10px rgb(0, 17, 255), 0 0 20px rgb(34, 56, 178),
+    0 0 40px rgb(14, 2, 128), 0 0 80px rgb(0, 2, 139);
 }
 .game {
   height: 49vmin;
@@ -154,7 +147,7 @@ h1 {
   text-align: center;
   color: tomato;
   text-shadow: 0 0 10px orangered, 0 0 20px firebrick, 0 0 40px maroon,
-  0 0 80px darkred;
+    0 0 80px darkred;
   cursor: pointer;
 }
 .box:hover {
@@ -169,7 +162,7 @@ h1 {
 .col2 {
   border-right: 1px solid white;
 }
-.line{
+.line {
   background-color: rgb(3, 255, 57);
   height: 0.7%;
   width: 0;
@@ -180,22 +173,44 @@ h1 {
   box-shadow: 0 0 10px 4px green;
 }
 @keyframes shake {
-  0% { transform: translateX(0); }
-  10% { transform: translateX(-10px); }
-  20% { transform: translateX(10px); }
-  30% { transform: translateX(-10px); }
-  40% { transform: translateX(10px); }
-  50% { transform: translateX(-10px); }
-  60% { transform: translateX(10px); }
-  70% { transform: translateX(-10px); }
-  80% { transform: translateX(10px); }
-  90% { transform: translateX(-10px); }
-  100% { transform: translateX(0); }
+  0% {
+    transform: translateX(0);
+  }
+  10% {
+    transform: translateX(-10px);
+  }
+  20% {
+    transform: translateX(10px);
+  }
+  30% {
+    transform: translateX(-10px);
+  }
+  40% {
+    transform: translateX(10px);
+  }
+  50% {
+    transform: translateX(-10px);
+  }
+  60% {
+    transform: translateX(10px);
+  }
+  70% {
+    transform: translateX(-10px);
+  }
+  80% {
+    transform: translateX(10px);
+  }
+  90% {
+    transform: translateX(-10px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 .winnerMsg.draw {
   animation: shake 0.8s ease-in-out;
 }
-.resetBtn{
+.resetBtn {
   font-size: 2vmin;
   margin-top: 20px;
   padding: 5px 10px 5px 10px;
@@ -211,11 +226,62 @@ h1 {
   box-shadow: 0px 2px 10px 5px #1abc9c;
   color: #000;
 }
-
 .resetBtn:active {
   background-color: #c0392b; /* Change to your desired color */
   color: #fff; /* Change to your desired text color */
 }
-
-
-.resetBtn:focus { outline:0; } 
+.alertContainer {
+  position: absolute;
+  background-color: rgb(238, 238, 209);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 80%;
+  display: none;
+}
+h3 {
+  padding: 2%;
+  margin-bottom: 5%;
+  font-weight: 50;
+}
+#alertButtns {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+#yes,
+#no {
+  padding: 2%;
+  width: 50%;
+  padding-left: 2%;
+  padding-right: 2%;
+  border: none;
+  background-color: rgb(238, 238, 209);
+  transition: 0.3s ease-in-out;
+}
+#yes {
+  border-bottom-right-radius: 4px;
+}
+#no {
+  border-bottom-left-radius: 4px;
+}
+#yes:hover {
+  background-color: #c0392b;
+  color: white;
+}
+#no:hover {
+  background-color: #0e9b31;
+  color: white;
+}
+@media screen and (max-width: 600px) {
+  .alertContainer {
+    width: 80vw; 
+    height: auto; 
+  }
+  h3 {
+    font-size: 80%;
+  }
+}
